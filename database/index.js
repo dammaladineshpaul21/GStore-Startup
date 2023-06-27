@@ -1,31 +1,52 @@
 const express = require('express');
-const bodyparser =  require('body-parser');
+const bodyParser = require('body-parser');
 const cors = require('cors');
 const mysql = require('mysql2');
 
 const app = express();
-
 app.use(cors());
-app.use(bodyparser.json());
+app.use(bodyParser.json());
 
-app.listen(3000, ()=>{
-    console.log("server is runing on 3000 port, tastycodeiz");
-})
+const dbConfig = {
+  host: 'localhost',
+  user: 'root',
+  password: 'Dammala#4091',
+  database: 'groceryapplication'
+};
 
-const dbConfig = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: 'Dammala#4091',
-    // database: '' // Replace with your actual database name
-  });
+const connection = mysql.createConnection(dbConfig);
 
-const createDatabaseQuery = "CREATE DATABASE groceryapplication"; // Replace with your desired database name
+// Create a new table
+const createTableQuery = `CREATE TABLE IF NOT EXISTS new_table (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(255) NOT NULL,
+  email VARCHAR(255) NOT NULL
+)`;
 
-dbConfig.query(createDatabaseQuery, (error, results) => {
+connection.query(createTableQuery, (error, result) => {
+  if (error) {
+    console.error('Error creating table: ', error);
+  } else {
+    console.log('Table created successfully');
+  }
+});
+
+app.post('/api/data', (req, res) => {
+  const { control1, control2 } = req.body;
+  const values = [control1, control2];
+  const insertQuery = 'INSERT INTO new_table (name, email) VALUES (?, ?)';
+  
+  connection.query(insertQuery, values, (error, result) => {
     if (error) {
-      console.error("Error creating database: ", error);
+      console.error('Error inserting data: ', error);
+      res.status(500).json({ error: 'Internal server error' });
     } else {
-      console.log("Database created successfully");
+      res.status(201).json({ message: 'Data inserted successfully' });
     }
-    dbConfig.end(); // Close the connection pool
   });
+});
+
+const port = 3000; // Set the desired port number
+app.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
+});

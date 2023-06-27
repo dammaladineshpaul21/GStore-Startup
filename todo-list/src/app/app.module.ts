@@ -7,6 +7,10 @@ import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
 import { FormExampleComponent } from './form-example/form-example.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { DataService } from 'src/app/data.service';
+
+
 
 
 @NgModule({
@@ -18,9 +22,10 @@ import { ReactiveFormsModule } from '@angular/forms';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [DataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
