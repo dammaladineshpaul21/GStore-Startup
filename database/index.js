@@ -17,10 +17,14 @@ const dbConfig = {
 const connection = mysql.createConnection(dbConfig);
 
 // Create a new table
-const createTableQuery = `CREATE TABLE IF NOT EXISTS new_table (
+const createTableQuery = `CREATE TABLE IF NOT EXISTS customer_data (
   id INT AUTO_INCREMENT PRIMARY KEY,
-  name VARCHAR(255) NOT NULL,
-  email VARCHAR(255) NOT NULL
+  customerId VARCHAR(255) NOT NULL,
+  firstName VARCHAR(255) NOT NULL,
+  lastName VARCHAR(255) NOT NULL,
+  email VARCHAR(255) NOT NULL,
+  phoneNumber VARCHAR(255) NOT NULL,
+  address VARCHAR(255) NOT NULL
 )`;
 
 connection.query(createTableQuery, (error, result) => {
@@ -32,17 +36,33 @@ connection.query(createTableQuery, (error, result) => {
 });
 
 app.post('/api/data', (req, res) => {
-  const { control1, control2 } = req.body;
-  const values = [control1, control2];
-  const insertQuery = 'INSERT INTO new_table (name, email) VALUES (?, ?)';
-  
-  connection.query(insertQuery, values, (error, result) => {
+  const { customerId, firstName, lastName, email, phoneNumber, address } = req.body;
+  const values = [customerId, firstName, lastName, email, phoneNumber, address];
+  const selectQuery = 'SELECT * FROM customer_data WHERE email = ? OR phoneNumber = ? OR customerId = ?';
+  const insertQuery = 'INSERT INTO customer_data (customerId, firstName, lastName, email, phoneNumber, address) VALUES (?, ?, ?, ?, ?, ?)';
+
+  // Check if email, phone number, or customer ID already exists
+  connection.query(selectQuery, [email, phoneNumber, customerId], (error, results) => {
     if (error) {
-      console.error('Error inserting data: ', error);
+      console.error('Error executing select query: ', error);
       res.status(500).json({ error: 'Internal server error' });
-    } else {
-      res.status(201).json({ message: 'Data inserted successfully' });
+      return;
     }
+
+    if (results.length > 0) {
+      res.status(400).json({ error: 'Email, phone number, or customer ID already exists' });
+      return;
+    }
+
+    // Insert the data if it does not already exist
+    connection.query(insertQuery, values, (error, result) => {
+      if (error) {
+        console.error('Error inserting data: ', error);
+        res.status(500).json({ error: 'Internal server error' });
+      } else {
+        res.status(201).json({ message: 'Data inserted successfully' });
+      }
+    });
   });
 });
 

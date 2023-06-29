@@ -1,5 +1,120 @@
-<form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+<!-- <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
     <input type="name" formControlName="control1">
     <input type="email" formControlName="control2">
     <button type="submit">Submit</button>
-</form>
+</form> -->
+
+
+
+<head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <!-- <link rel="stylesheet" type="text/css" href="style.css">  -->
+</head>
+<body>
+    <!-- <div class="logo">
+        <div class="letter-g">G</div>
+        <div class="letter-s">S</div>
+    </div> -->
+    <div class="container-fluid mt-3 w3-container d-flex justify-content-center align-items-center box">
+        <div class="row">
+            <div class="col-sm-4 p-3 text-center">
+                <div class="circle">
+                    <div class="photo">
+                        <!-- <img src="/Users/dammaladinesh/practice_file/javascript/images/my_phots.png"> -->
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-8 p-3 text-center">
+                <h1 style="font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;" class="content">Welcome to the DINSAIStore's</h1><br>
+                <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+                    <!-- <ng-container *ngFor="let field of formFields">
+                        <div class="input-container">
+                          <input type="text" class="form-control" [id]="field.id" [formControlName]="field.name" required>
+                          <label>{{ field.label }}</label>
+                          <div class="text-error-call" *ngIf="myForm.get(field.name)?.invalid && myForm.get(field.name)?.touched">
+                            <span class="text-danger">{{ field.errorMessage }}</span>
+                          </div>
+                        </div>
+                    </ng-container> -->
+                    <div class="input-container">
+                        <input type="text" class="form-control" id="customer-id" formControlName="customerId" required>
+                        <label>Customer ID</label>
+                        <div class="text-error-call" *ngIf="myForm.get('customerId')?.invalid && myForm.get('customerId')?.touched">
+                            <span class="text-danger">Customer ID is required.</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-container col-sm-6">
+                            <input type="text"  id="first-name" class="form-control" formControlName="firstName" required>
+                            <label style="padding-left: 3%;">First Name</label>
+                            <div class="text-error-call" *ngIf="myForm.get('firstName')?.invalid && myForm.get('firstName')?.touched">
+                                <span class="text-danger">First Name ID is required.</span>
+                            </div>
+                        </div>
+                        
+                        <div class="input-container col-sm-6">
+                            <input type="text" class="form-control" id="last-name" formControlName="lastName" required>
+                            <label style="padding-left: 3%;">Last Name</label>
+                            <div class="text-error-call" *ngIf="myForm.get('lastName')?.invalid && myForm.get('lastName')?.touched">
+                                <span class="text-danger">Last Name ID is required.</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="input-container">
+                        <input type="email" class="form-control" id="email" formControlName="email" required>
+                        <label>Email</label>
+                        <div class="text-error-call" *ngIf="myForm.get('email')?.invalid && myForm.get('email')?.touched">
+                            <span class="text-danger">Email ID is required.</span>
+                        </div>
+                    </div>
+                    <div class="input-container">
+                        <input type="text" class="form-control" id="phone-number" formControlName="phoneNumber" required>
+                        <label>Phone_number</label>
+                        <div class="text-error-call" *ngIf="myForm.get('phoneNumber')?.invalid && myForm.get('phoneNumber')?.touched">
+                            <span class="text-danger">Phone_number ID is required.</span>
+                        </div>
+                    </div>
+                    <div class="input-container">
+                        <input type="text" class="form-control" id="person-address" formControlName="address" required>
+                        <label>Address</label>
+                        <div class="text-error-call" *ngIf="myForm.get('address')?.invalid && myForm.get('address')?.touched">
+                            <span class="text-danger">Address ID is required.</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <!-- <div class="bottom-row col-sm-6">
+                            <div>
+                                <p style="font-size: 15px;">Already Existing User</p>
+                                <button type="submit" class="btn button-row">Sign In</button>
+                            </div>
+                        </div> -->
+                        <div class="bottom-row col-sm-6">
+                            <div>
+                                <p style="font-size: 15px;">New User</p>
+                                <button type="submit" class="btn button-row">Submit</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                
+                <div class="error-message w3-panel w3-red" *ngIf="errorMessage">
+                    {{ errorMessage }}
+                </div><br>
+                <div class="row">
+                    <div class="bottom-row col-sm-6 w3-padding-5">
+                        <p style="color: rgb(8, 8, 8); background-color: rgb(67, 120, 199); font-style:italic">Already An Existing G-Store Customer</p>
+                    </div>
+                    <div style="width: 50px; height: 50px;" class="bottom-row col-sm-6 w3-padding-5">
+                        <button type="submit" class="btn button-row" routerLink="./login-form">Login</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>  
+</body>
