@@ -66,6 +66,23 @@
                             </div>
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="input-container col-sm-6">
+                            <input type="text"  id="pass-word" class="password" formControlName="password" required>
+                            <label style="padding-left: 3%;">New Password</label>
+                            <div class="text-error-call" *ngIf="myForm.get('password')?.invalid && myForm.get('password')?.touched">
+                                <span class="text-danger">First Name ID is required.</span>
+                            </div>
+                        </div>
+                        
+                        <div class="input-container col-sm-6">
+                            <input type="text" class="reenter-password" id="reenter-password-name" formControlName="reenterpassword" required>
+                            <label style="padding-left: 3%;">Re-Enter Password</label>
+                            <div class="text-error-call" *ngIf="myForm.get('reenterpassword')?.invalid && myForm.get('reenterpassword')?.touched">
+                                <span class="text-danger">Last Name ID is required.</span>
+                            </div>
+                        </div>
+                    </div>
                     <div class="input-container">
                         <input type="email" class="form-control" id="email" formControlName="email" required>
                         <label>Email</label>
@@ -88,32 +105,19 @@
                         </div>
                     </div>
                     <div class="row">
-                        <!-- <div class="bottom-row col-sm-6">
-                            <div>
-                                <p style="font-size: 15px;">Already Existing User</p>
-                                <button type="submit" class="btn button-row">Sign In</button>
-                            </div>
-                        </div> -->
-                        <div class="bottom-row col-sm-6">
-                            <div>
-                                <p style="font-size: 15px;">New User</p>
-                                <button type="submit" class="btn button-row">Submit</button>
-                            </div>
+                        <div class="input-container col-sm-6">
+                            <p style="font-size: 15px;">New User</p>
+                            <button style="width: 100px; height: 50px;" type="button" class="btn button-row">Submit</button>
+                        </div>
+                        <div class="input-container col-sm-6">
+                            <p style="font-size: 15px;">Already An Existing G-Store Customer</p>
+                            <button style="width: 100px; height: 50px;" type="button" class="btn button-row" routerLink="./login-form">Login</button>
                         </div>
                     </div>
-                </form>
-                
+                </form>               
                 <div class="error-message w3-panel w3-red" *ngIf="errorMessage">
                     {{ errorMessage }}
                 </div><br>
-                <div class="row">
-                    <div class="bottom-row col-sm-6 w3-padding-5">
-                        <p style="color: rgb(8, 8, 8); background-color: rgb(67, 120, 199); font-style:italic">Already An Existing G-Store Customer</p>
-                    </div>
-                    <div style="width: 50px; height: 50px;" class="bottom-row col-sm-6 w3-padding-5">
-                        <button type="submit" class="btn button-row" routerLink="./login-form">Login</button>
-                    </div>
-                </div>
             </div>
         </div>
     </div>  

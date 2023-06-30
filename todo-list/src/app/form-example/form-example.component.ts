@@ -48,6 +48,8 @@ export class FormExampleComponent {
       customerId: ['', Validators.required],
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
+      password: ['', Validators.required],
+      reenterpassword: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       phoneNumber: ['', Validators.required],
       address: ['', Validators.required]
