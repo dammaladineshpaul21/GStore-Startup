@@ -9,7 +9,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { DataService } from 'src/app/data.service';
 import { RouterModule } from '@angular/router';
 import { LoginFormComponent } from './login-form/login-form.component';
-import { AppRoutingModule } from './app-routing.module'; // CLI imports AppRoutingModule
+import { AppRoutingModule } from './app-routing.module';
+import { GroceryDashbordComponent } from './grocery-dashbord/grocery-dashbord.component'; // CLI imports AppRoutingModule
 
 
 @NgModule({
@@ -17,6 +18,7 @@ import { AppRoutingModule } from './app-routing.module'; // CLI imports AppRouti
     AppComponent,
     FormExampleComponent,
     LoginFormComponent,
+    GroceryDashbordComponent,
   ],
   imports: [
     BrowserModule,

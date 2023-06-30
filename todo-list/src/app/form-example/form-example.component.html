@@ -1,11 +1,3 @@
-<!-- <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
-    <input type="name" formControlName="control1">
-    <input type="email" formControlName="control2">
-    <button type="submit">Submit</button>
-</form> -->
-
-
-
 <head>
     <title>Bootstrap Example</title>
     <meta charset="utf-8">
@@ -17,10 +9,6 @@
     <!-- <link rel="stylesheet" type="text/css" href="style.css">  -->
 </head>
 <body>
-    <!-- <div class="logo">
-        <div class="letter-g">G</div>
-        <div class="letter-s">S</div>
-    </div> -->
     <div class="container-fluid mt-3 w3-container d-flex justify-content-center align-items-center box">
         <div class="row">
             <div class="col-sm-4 p-3 text-center">
@@ -33,15 +21,6 @@
             <div class="col-sm-8 p-3 text-center">
                 <h1 style="font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;" class="content">Welcome to the DINSAIStore's</h1><br>
                 <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
-                    <!-- <ng-container *ngFor="let field of formFields">
-                        <div class="input-container">
-                          <input type="text" class="form-control" [id]="field.id" [formControlName]="field.name" required>
-                          <label>{{ field.label }}</label>
-                          <div class="text-error-call" *ngIf="myForm.get(field.name)?.invalid && myForm.get(field.name)?.touched">
-                            <span class="text-danger">{{ field.errorMessage }}</span>
-                          </div>
-                        </div>
-                    </ng-container> -->
                     <div class="input-container">
                         <input type="text" class="form-control" id="customer-id" formControlName="customerId" required>
                         <label>Customer ID</label>
@@ -107,11 +86,11 @@
                     <div class="row">
                         <div class="input-container col-sm-6">
                             <p style="font-size: 15px;">New User</p>
-                            <button style="width: 100px; height: 50px;" type="button" class="btn button-row">Submit</button>
+                            <button style="width: 100px; height: 50px;" type="submit" class="btn button-row">Submit</button>
                         </div>
                         <div class="input-container col-sm-6">
                             <p style="font-size: 15px;">Already An Existing G-Store Customer</p>
-                            <button style="width: 100px; height: 50px;" type="button" class="btn button-row" routerLink="./login-form">Login</button>
+                            <button style="width: 100px; height: 50px;" type="text" class="btn button-row" routerLink="./login-form">Login</button>
                         </div>
                     </div>
                 </form>               

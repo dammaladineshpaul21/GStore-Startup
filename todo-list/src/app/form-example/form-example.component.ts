@@ -73,9 +73,5 @@ export class FormExampleComponent {
       );
     }
   }
-
-  onLoginPage(){
-    this.router.navigateByUrl('/login-form');
-  }
 }
 

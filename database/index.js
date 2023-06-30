@@ -22,6 +22,8 @@ const createTableQuery = `CREATE TABLE IF NOT EXISTS customer_data (
   customerId VARCHAR(255) NOT NULL,
   firstName VARCHAR(255) NOT NULL,
   lastName VARCHAR(255) NOT NULL,
+  password VARCHAR(255) NOT NULL,
+  reenterpassword VARCHAR(255) NOT NULL,
   email VARCHAR(255) NOT NULL,
   phoneNumber VARCHAR(255) NOT NULL,
   address VARCHAR(255) NOT NULL
@@ -36,10 +38,10 @@ connection.query(createTableQuery, (error, result) => {
 });
 
 app.post('/api/data', (req, res) => {
-  const { customerId, firstName, lastName, email, phoneNumber, address } = req.body;
-  const values = [customerId, firstName, lastName, email, phoneNumber, address];
+  const { customerId, firstName, lastName, password, reenterpassword, email, phoneNumber, address } = req.body;
+  const values = [customerId, firstName, lastName, password, reenterpassword, email, phoneNumber, address];
   const selectQuery = 'SELECT * FROM customer_data WHERE email = ? OR phoneNumber = ? OR customerId = ?';
-  const insertQuery = 'INSERT INTO customer_data (customerId, firstName, lastName, email, phoneNumber, address) VALUES (?, ?, ?, ?, ?, ?)';
+  const insertQuery = 'INSERT INTO customer_data (customerId, firstName, lastName, password, reenterpassword, email, phoneNumber, address) VALUES (?, ?, ?, ?, ?, ?, ?, ?)';
 
   // Check if email, phone number, or customer ID already exists
   connection.query(selectQuery, [email, phoneNumber, customerId], (error, results) => {
@@ -65,6 +67,29 @@ app.post('/api/data', (req, res) => {
     });
   });
 });
+
+
+app.post('/api/login', (req, res) => {
+  const { email, password } = req.body;
+
+  // Retrieve the user record based on email and password
+  const query = 'SELECT * FROM customer_data WHERE email = ? AND password = ?';
+  connection.query(query, [email, password], (error, results) => {
+    if (error) {
+      console.error('Login failed:', error);
+      res.status(500).json({ message: 'An error occurred' });
+    } else {
+      if (results.length > 0) {
+        const user = results[0];
+        // Login successful, send the full record as the response
+        res.status(200).json({ user });
+      } else {
+        // User not found, authentication failed
+        res.status(401).json({ message: 'Invalid email or password' });
+      }
+    }
+  });
+})
 
 const port = 3000; // Set the desired port number
 app.listen(port, () => {
