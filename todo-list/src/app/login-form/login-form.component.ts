@@ -24,6 +24,4 @@ export class LoginFormComponent {
       // Perform login actions
     }
   }
-
-
 }
