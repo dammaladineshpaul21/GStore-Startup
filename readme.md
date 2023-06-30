@@ -13,3 +13,31 @@ Copy code
 lsof -i :3000
 kill -9 PID
 Please note that using the kill -9 command with the SIGKILL signal should generally terminate the process forcefully. If it is still not working, there may be other factors involved, and it would be advisable to consult with a system administrator or seek further technical assistance.
+______________________________________________________________________________________________________________________________________________________________________________________________
+
+Categories see all
+Vegetables & Fruits
+Dairy & Breakfast
+Cold Drinks & Juices
+Instant & Frozen Food
+Bakery & Biscuits
+Sweet Tooth
+Dry Fruits, Masala & Oil
+Sauces & Spreads
+Paan Comer
+Organic & Premium
+Pharma & Wellness
+Cleaning Essentials
+Personal Care
+Ice Creams & Frozen Desserts
+Beauty & Cosmetics
+Print Store
+Toys & Games
+Munchies
+Tea, Coffee & Health Drinks
+Atta, Rice & Dal
+Chicken, Meat & Fish
+Baby Care
+Home & Office
+Pet Care
+Magazines
