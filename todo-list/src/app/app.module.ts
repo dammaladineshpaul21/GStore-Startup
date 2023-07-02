@@ -10,7 +10,8 @@ import { DataService } from 'src/app/data.service';
 import { RouterModule } from '@angular/router';
 import { LoginFormComponent } from './login-form/login-form.component';
 import { AppRoutingModule } from './app-routing.module';
-import { GroceryDashbordComponent } from './grocery-dashbord/grocery-dashbord.component'; // CLI imports AppRoutingModule
+import { GroceryDashbordComponent } from './grocery-dashbord/grocery-dashbord.component';
+import { DashBordDataComponent } from './dash-bord-data/dash-bord-data.component'; // CLI imports AppRoutingModule
 
 
 @NgModule({
@@ -19,6 +20,7 @@ import { GroceryDashbordComponent } from './grocery-dashbord/grocery-dashbord.co
     FormExampleComponent,
     LoginFormComponent,
     GroceryDashbordComponent,
+    DashBordDataComponent,
   ],
   imports: [
     BrowserModule,
