@@ -16,8 +16,8 @@
                     <div class="input_box">
                         <label for="order_id">Order ID:</label>
                         <input type="text" id="order_id" formControlName="orderId" required>
-                        <div *ngIf="orderId?.invalid && (orderId?.dirty || orderId?.touched)">
-                            <div *ngIf="orderId?.errors?.['required']">Order ID is required.</div>
+                        <div *ngIf="orderForm.get('orderId')?.invalid && (orderForm.get('orderId')?.dirty || orderForm.get('orderId')?.touched)">
+                            <div *ngIf="orderForm.get('orderId')?.errors?.['required']">Order ID is required.</div>
                         </div>
                     </div>
                 </div>
@@ -25,8 +25,8 @@
                     <div class="input_box">
                         <label for="customer_id">Customer ID:</label>
                         <input type="text" id="customer_id" formControlName="customerId" required>
-                        <div *ngIf="customerId?.invalid && (customerId?.dirty || customerId?.touched)">
-                            <div *ngIf="customerId?.errors?.['required']">Customer ID is required.</div>
+                        <div *ngIf="orderForm.get('customer_id')?.invalid && (orderForm.get('customer_id')?.dirty || orderForm.get('customer_id')?.touched)">
+                            <div *ngIf="orderForm.get('customer_id')?.errors?.['required']">customer_id is required.</div>
                         </div>
                     </div>
                 </div>
@@ -34,8 +34,8 @@
                     <div class="input_box">
                         <label for="store_id">Store ID:</label>
                         <input type="text" id="store_id" formControlName="storeId" required >
-                        <div *ngIf="storeId?.invalid && (storeId?.dirty || storeId?.touched)">
-                            <div *ngIf="storeId?.errors?.['required']">Store ID is required.</div>
+                        <div *ngIf="orderForm.get('storeId')?.invalid && (orderForm.get('storeId')?.dirty || orderForm.get('storeId')?.touched)">
+                            <div *ngIf="orderForm.get('storeId')?.errors?.['required']">storeId is required.</div>
                         </div>
                     </div>
                 </div>
@@ -43,8 +43,8 @@
                     <div class="input_box">
                         <label for="order_date">Order Date:</label>
                         <input type="date" id="order_date" formControlName="orderDate" required >
-                        <div *ngIf="orderDate?.invalid && (orderDate?.dirty || orderDate?.touched)">
-                            <div *ngIf="orderDate?.errors?.['required']">Order Date is required.</div>
+                        <div *ngIf="orderForm.get('order_date')?.invalid && (orderForm.get('order_date')?.dirty || orderForm.get('order_date')?.touched)">
+                            <div *ngIf="orderForm.get('order_date')?.errors?.['required']">order_date ID is required.</div>
                         </div>
                     </div>
                 </div>
@@ -52,8 +52,8 @@
                     <div class="input_box">
                         <label for="total_amount">Total Amount:</label>
                         <input type="number" id="total_amount" formControlName="totalAmount" required >
-                        <div *ngIf="totalAmount?.invalid && (totalAmount?.dirty || totalAmount?.touched)">
-                            <div *ngIf="totalAmount?.errors?.['required']">Total Amount is required.</div>
+                        <div *ngIf="orderForm.get('total_amount')?.invalid && (orderForm.get('total_amount')?.dirty || orderForm.get('total_amount')?.touched)">
+                            <div *ngIf="orderForm.get('total_amount')?.errors?.['required']">total_amount is required.</div>
                         </div>
                     </div>
                 </div>

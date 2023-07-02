@@ -10,7 +10,7 @@ app.use(bodyParser.json());
 const dbConfig = {
   host: 'localhost',
   user: 'root',
-  password: 'Dammala#4091',
+  password: '',
   database: 'groceryapplication'
 };
 
@@ -91,7 +91,12 @@ app.post('/api/login', (req, res) => {
   });
 })
 
+
+
+
+
 const port = 3000; // Set the desired port number
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
+

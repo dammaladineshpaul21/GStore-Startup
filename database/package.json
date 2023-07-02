@@ -2,9 +2,9 @@
   "name": "mysqlangular",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "dashbord.js",
   "scripts": {
-    "test": "nodemon index.js"
+    "test": "nodemon dashbord.js"
   },
   "author": "dammala_dinesh",
   "license": "ISC",
@@ -12,6 +12,7 @@
     "body-parser": "^1.20.2",
     "cors": "^2.8.5",
     "express": "^4.18.2",
-    "mysql2": "^3.4.1"
+    "mysql2": "^3.4.1",
+    "nodemon": "^2.0.22"
   }
 }

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { HttpClient, HttpParams } from '@angular/common/http';
 
 @Component({
   selector: 'app-dash-bord-data',
@@ -8,8 +9,12 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class DashBordDataComponent {
   orderForm: FormGroup;
+  filteredOrders: any[] = [];
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(
+    private formBuilder: FormBuilder,
+    private http: HttpClient
+  ) {
     this.orderForm = this.formBuilder.group({
       orderId: ['', Validators.required],
       customerId: ['', Validators.required],
@@ -19,31 +24,27 @@ export class DashBordDataComponent {
     });
   }
 
-
-  get orderId() {
-    return this.orderForm.get('orderId');
-  }
-
-  get customerId() {
-    return this.orderForm.get('customerId');
-  }
-
-  get storeId() {
-    return this.orderForm.get('storeId');
-  }
-
-  get orderDate() {
-    return this.orderForm.get('orderDate');
-  }
-
-  get totalAmount() {
-    return this.orderForm.get('totalAmount');
-  }
-
   submitOrder() {
-    if (this.orderForm.valid) {
-      // Code to handle form submission and inserting the order record
-      console.log('Form submitted:', this.orderForm.value);
+    if (this.orderForm.invalid) {
+      return;
     }
+
+    const filterParams = this.orderForm.value;
+    this.fetchFilteredOrders(filterParams);
+  }
+
+  fetchFilteredOrders(filterParams: any) {
+    const apiUrl = 'http://localhost:3000/api/orders';
+    const params = new HttpParams({ fromObject: filterParams });
+
+    this.http.get<any[]>(apiUrl, { params })
+      .subscribe(
+        (response) => {
+          this.filteredOrders = response;
+        },
+        (error) => {
+          console.log('Error fetching filtered orders:', error);
+        }
+      );
   }
 }
