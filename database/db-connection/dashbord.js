@@ -55,7 +55,7 @@ app.post('/api/orders', (req, res) => {
 
 
 // API route to fetch filtered orders
-app.get('/api/orders', (req, res) => {
+app.get('/api/ordersdata', (req, res) => {
   const { orderId, customerId, storeId, orderDate, totalAmount } = req.query;
 
   // Construct the SQL query based on the filter parameters
@@ -88,6 +88,9 @@ app.get('/api/orders', (req, res) => {
 });
   
 // Start the server
-app.listen(3000, () => {
-console.log(`Server is running on port ${3000}`);
+
+const port = 4000;
+
+app.listen(port, () => {
+console.log(`Server is running on port ${port}`);
 });

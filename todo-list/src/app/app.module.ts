@@ -11,7 +11,8 @@ import { RouterModule } from '@angular/router';
 import { LoginFormComponent } from './login-form/login-form.component';
 import { AppRoutingModule } from './app-routing.module';
 import { GroceryDashbordComponent } from './grocery-dashbord/grocery-dashbord.component';
-import { DashBordDataComponent } from './dash-bord-data/dash-bord-data.component'; // CLI imports AppRoutingModule
+import { DashBordDataComponent } from './dash-bord-data/dash-bord-data.component';
+import { CategoryDataComponent } from './category-data/category-data.component'; // CLI imports AppRoutingModule
 
 
 @NgModule({
@@ -21,6 +22,7 @@ import { DashBordDataComponent } from './dash-bord-data/dash-bord-data.component
     LoginFormComponent,
     GroceryDashbordComponent,
     DashBordDataComponent,
+    CategoryDataComponent,
   ],
   imports: [
     BrowserModule,

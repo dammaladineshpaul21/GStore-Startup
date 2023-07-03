@@ -4,6 +4,7 @@ import { FormExampleComponent } from './form-example/form-example.component';
 import { LoginFormComponent } from './login-form/login-form.component';
 import { GroceryDashbordComponent } from './grocery-dashbord/grocery-dashbord.component';
 import { DashBordDataComponent } from './dash-bord-data/dash-bord-data.component';
+import { CategoryDataComponent } from './category-data/category-data.component';
 
 
 const routes: Routes = [
@@ -11,6 +12,7 @@ const routes: Routes = [
     { path: 'login-form', component: LoginFormComponent},
     { path: 'grocery-dashbord', component: GroceryDashbordComponent},
     { path: 'dash-bord-data', component: DashBordDataComponent},
+    { path: 'category-data', component: CategoryDataComponent},
 ];
 
 @NgModule({

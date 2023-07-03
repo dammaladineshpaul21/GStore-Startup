@@ -2,9 +2,11 @@
   "name": "mysqlangular",
   "version": "1.0.0",
   "description": "",
-  "main": "dashbord.js",
+  "main": "db-connection/index.js",
   "scripts": {
-    "test": "nodemon dashbord.js"
+    "start": "npm-run-all --parallel  start-index start-dashboard",
+    "start-index": "nodemon db-connection/index.js",
+    "start-dashboard": "nodemon db-connection/dashbord.js"
   },
   "author": "dammala_dinesh",
   "license": "ISC",
@@ -14,5 +16,9 @@
     "express": "^4.18.2",
     "mysql2": "^3.4.1",
     "nodemon": "^2.0.22"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.0",
+    "npm-run-all": "^4.1.5"
   }
 }

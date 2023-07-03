@@ -1,0 +1,8 @@
+  "main": "db-connection/index.js",
+  "scripts": {
+    "start": "npm-run-all --parallel  start-index start-dashboard",
+    "start-index": "nodemon db-connection/index.js",
+    "start-dashboard": "nodemon db-connection/dashbord.js"
+  },
+
+  // Tp run server parallel

@@ -34,13 +34,13 @@ export class DashBordDataComponent {
   }
 
   fetchFilteredOrders(filterParams: any) {
-    const apiUrl = 'http://localhost:3000/api/orders';
-    const params = new HttpParams({ fromObject: filterParams });
-
-    this.http.get<any[]>(apiUrl, { params })
+    const apiUrl = 'http://localhost:4000/api/orders'; // Replace with your API endpoint URL
+  
+    this.http.post<any[]>(apiUrl, filterParams)
       .subscribe(
         (response) => {
           this.filteredOrders = response;
+          console.log("Updated Order Details As A New Record")
         },
         (error) => {
           console.log('Error fetching filtered orders:', error);
