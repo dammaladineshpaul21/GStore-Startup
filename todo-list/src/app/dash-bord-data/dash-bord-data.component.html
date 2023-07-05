@@ -39,7 +39,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col p-2.40">
+                <div style="margin-top: 1%;" class="col p-2.40">
                     <div class="input_box">
                         <label for="order_date">Order Date:</label>
                         <input type="date" id="order_date" formControlName="orderDate" required >
@@ -48,7 +48,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col p-2.40">
+                <div style="margin-top: 1%;" class="col p-2.40">
                     <div class="input_box">
                         <label for="total_amount">Total Amount:</label>
                         <input type="number" id="total_amount" formControlName="totalAmount" required >
@@ -58,14 +58,37 @@
                     </div>
                 </div>
             </div>
-            <div class="container">
-                <div class="button-container">
-                    <button type="submit" [disabled]="orderForm.invalid" class="w3-button w3-black w3-round-xxlarge">Submit</button>
-                </div>
+            <hr>
+            <div style="margin-top: 3%; text-align: center;">
+                <button type="submit" [disabled]="orderForm.invalid" class="w3-button w3-black w3-round-xxlarge">Submit</button>
             </div>
         </div>
     </form>
+    <table class="container-fluid mt-3">
+        <thead>
+          <tr>
+            <th class="text-black text-center">Order ID</th>
+            <th class="text-black text-center">Customer ID</th>
+            <th class="text-black text-center">Store ID</th>
+            <th class="text-black text-center">Order Date</th>
+            <th class="text-black text-center">Total Amount</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let order of orders">
+            <td class="text-black text-center">{{ order.orderId }}</td>
+            <td class="text-black text-center">{{ order.customerId }}</td>
+            <td class="text-black text-center">{{ order.storeId }}</td>
+            <td class="text-black text-center">{{ order.orderDate }}</td>
+            <td class="text-black text-center">{{ order.totalAmount }}</td>
+          </tr>
+        </tbody>
+    </table>
+    <tr *ngIf="orders.length === 0">
+        <td colspan="5">No orders found.</td>
+    </tr>
   </body>
+
 
 
 

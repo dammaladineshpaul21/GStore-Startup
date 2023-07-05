@@ -54,7 +54,6 @@ app.post('/api/orders', (req, res) => {
 });
 
 
-// API route to fetch filtered orders
 app.get('/api/ordersdata', (req, res) => {
   const { orderId, customerId, storeId, orderDate, totalAmount } = req.query;
 
@@ -62,28 +61,31 @@ app.get('/api/ordersdata', (req, res) => {
   let sql = 'SELECT * FROM orders WHERE 1=1';
 
   if (orderId) {
-    sql += ` orderId = '${orderId}'`;
-  } else if (customerId) {
-    sql += ` customerId = '${customerId}'`;
-  } else if (storeId) {
-    sql += ` storeId = '${storeId}'`;
-  } else if (orderDate) {
-    sql += ` orderDate = '${orderDate}'`;
-  } else if (totalAmount) {
-    sql += ` totalAmount = '${totalAmount}'`;
-  } else {
-    res.status(400).json({ error: 'Invalid filter parameters' });
-    return;
+    sql += ` AND orderId = '${orderId}'`;
+  }
+  if (customerId) {
+    sql += ` AND customerId = '${customerId}'`;
+  }
+  if (storeId) {
+    sql += ` AND storeId = '${storeId}'`;
+  }
+  if (orderDate) {
+    sql += ` AND orderDate = '${orderDate}'`;
+  }
+  if (totalAmount) {
+    sql += ` AND totalAmount = '${totalAmount}'`;
   }
 
   // Execute the SQL query
   connection.query(sql, (error, results) => {
     if (error) {
-      console.log('Error fetching filtered orders:', error);
-      res.status(500).json({ error: 'Internal Server Error' });
-    } else {
-      res.json(results);
+      console.log('Error executing SQL query:', error);
+      res.status(500).json({ error: 'Internal server error' });
+      return;
     }
+
+    // Send the response with the query results
+    res.json(results);
   });
 });
   

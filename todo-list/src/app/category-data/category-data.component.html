@@ -1,1 +1,84 @@
-<p>category-data works!</p>
+<!-- <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+    <div>
+      <label for="item">Item:</label>
+      <select id="item" formControlName="item">
+        <option value="">Select an item</option>
+        <option value="item1">Item 1</option>
+        <option value="item2">Item 2</option>
+        <option value="item3">Item 3</option>
+      </select>
+      <div *ngIf="productForm.get('item')?.invalid && productForm.get('item')?.touched" class="error-message">
+        Item is required.
+      </div>
+    </div>
+    <div>
+      <label for="brand">Brand:</label>
+      <select id="brand" formControlName="brand">
+        <option value="">Select a brand</option>
+        <option value="brand1">Brand 1</option>
+        <option value="brand2">Brand 2</option>
+        <option value="brand3">Brand 3</option>
+      </select>
+      <div *ngIf="productForm.get('brand')?.invalid && productForm.get('brand')?.touched" class="error-message">
+        Brand is required.
+      </div>
+    </div>
+  
+    <div>
+      <label for="quantity">Quantity:</label>
+      <input type="number" id="quantity" formControlName="quantity">
+      <div *ngIf="productForm.get('quantity')?.invalid && productForm.get('quantity')?.touched" class="error-message">
+        Quantity must be a positive number.
+      </div>
+    </div>
+  
+    <div>
+      <label for="packNo">Pack No:</label>
+      <select id="packNo" formControlName="packNo">
+        <option value="">Select a pack number</option>
+        <option value="pack1">Pack 1</option>
+        <option value="pack2">Pack 2</option>
+        <option value="pack3">Pack 3</option>
+      </select>
+    </div>
+  
+    <div>
+      <label for="price">Price:</label>
+      <input type="number" id="price" formControlName="price">
+      <div *ngIf="productForm.get('price')?.invalid && productForm.get('price')?.touched" class="error-message">
+        Price must be a positive number.
+      </div>
+    </div>
+  
+    <div>
+      <label for="rating">Rating:</label>
+      <input type="number" id="rating" formControlName="rating">
+      <div *ngIf="productForm.get('rating')?.invalid && productForm.get('rating')?.touched" class="error-message">
+        Rating must be a positive number.
+      </div>
+    </div>
+  
+    <button type="submit" [disabled]="productForm.invalid">Submit</button>
+  </form> -->
+  <h1>All Grocery-Store Category</h1>
+  <aside class="responsive-banner" *ngFor="let banner of banners">
+    <div class="container-envelope">
+      <svg class="cirle-a" height="160" width="160">
+        <circle cx="80" cy="80" r="80"/>
+      </svg>
+      <svg class="cirle-b" height="60" width="60">
+        <circle cx="30" cy="30" r="30"/>
+      </svg>
+      <svg class="cirle-c" height="600" width="600">
+        <circle cx="300" cy="300" r="300"/>
+      </svg>
+      <svg class="cirle-d" height="60" width="60">
+        <circle cx="30" cy="30" r="30"/>
+      </svg>
+      <img [src]="banner.image" />
+      <div class="col-xs-12">
+        <p>{{ banner.title }}</p>
+        <a target="_blank" [href]="banner.link" class="more-link">Get inspired</a>
+      </div>
+    </div>
+  </aside>

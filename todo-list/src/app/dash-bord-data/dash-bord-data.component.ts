@@ -10,6 +10,8 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 export class DashBordDataComponent {
   orderForm: FormGroup;
   filteredOrders: any[] = [];
+  orders: any[] = [];
+
 
   constructor(
     private formBuilder: FormBuilder,
@@ -22,7 +24,10 @@ export class DashBordDataComponent {
       orderDate: ['', Validators.required],
       totalAmount: ['', Validators.required]
     });
+
+    this.getDataFromApi(); 
   }
+
 
   submitOrder() {
     if (this.orderForm.invalid) {
@@ -44,6 +49,22 @@ export class DashBordDataComponent {
         },
         (error) => {
           console.log('Error fetching filtered orders:', error);
+        }
+      );
+  }
+
+  // Fetch data from the API
+  getDataFromApi() {
+    const apiUrl = 'http://localhost:4000/api/ordersdata';
+
+    this.http.get<any[]>(apiUrl)
+      .subscribe(
+        (response) => {
+          this.orders = response;
+          console.log(this.orders);
+        },
+        (error) => {
+          console.log('Error fetching data from API:', error);
         }
       );
   }
