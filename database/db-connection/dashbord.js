@@ -35,6 +35,7 @@ connection.query(createTableQuery, (error, result) => {
   }
 });
 
+
 // API route to create a new order
 app.post('/api/orders', (req, res) => {
   const { orderId, customerId, storeId, orderDate, totalAmount } = req.body;

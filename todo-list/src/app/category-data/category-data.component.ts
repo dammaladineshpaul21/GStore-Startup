@@ -1,76 +1,32 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-
-interface Banner {
+interface Card {
   image: string;
+  link:string;
+  price: number;
   title: string;
-  link: string;
+  description: string;
+  dressingOptions: string[];
+  proteinPrice: number;
+  elements?: string[];
+  drizzleOptions?: string[];
 }
 
 @Component({
   selector: 'app-category-data',
   templateUrl: './category-data.component.html',
-  styleUrls: ['./category-data.component.css']
+  styleUrls: ['./category-data.component.scss']
 })
 export class CategoryDataComponent {
-  banners: Banner[] = [
+  cards: Card[] = [
     {
-      image: 'category-image/fresh-produce1.png',
-      title: 'Fresh Produce',
-      link: 'https://www.silocreativo.com/en/showcase/'
+      image: 'https://assets.codepen.io/652/photo-1520174691701-bc555a3404ca.jpeg',
+      price: 9,
+      title: 'Dairy & Breakfast',
+      description: 'Nutritious dairy products and breakfast essentials. From creamy yogurts to farm-fresh eggs, start your day with wholesome goodness. Rise and shine with us',
+      dressingOptions: [  "Milk (whole milk, skim milk, low-fat milk)",  "Yogurt (plain, flavored, Greek yogurt)",  "Cheese (cheddar, mozzarella, Swiss, feta, etc.)",  "Butter (salted, unsalted)",  "Eggs",  "Cream (heavy cream, whipping cream)",  "Margarine",  "Breakfast cereals (corn flakes, wheat flakes, muesli, granola, etc.)",  "Oatmeal",  "Bread (white bread, whole wheat bread, multigrain bread)",  "Bagels",  "Croissants",  "English muffins",  "Pancake mix",  "Maple syrup",  "Honey",  "Jam and preserves",  "Peanut butter",  "Fruit spreads",  "Breakfast bars",  "Fresh fruit juices",  "Flavored milk (chocolate milk, strawberry milk)",  "Coffee creamer",  "Non-dairy alternatives (soy milk, almond milk, oat milk, etc.)",  "Breakfast drinks and shakes"],
+      proteinPrice: 2,
+      link:"./dairy-breakfast"
     },
-    {
-      image: 'https://i.pinimg.com/originals/f2/d1/f9/f2d1f900f688ddca0765ec8e2d3900e1.png',
-      title: 'Dairy and Eggs',
-      link: 'https://www.silocreativo.com/en/showcase/'
-    },
-    {
-      image: 'https://i.pinimg.com/originals/f2/d1/f9/f2d1f900f688ddca0765ec8e2d3900e1.png',
-      title: 'Meat and Poultry',
-      link: 'https://www.silocreativo.com/en/showcase/'
-    },
-    {
-      image: 'https://i.pinimg.com/originals/f2/d1/f9/f2d1f900f688ddca0765ec8e2d3900e1.png',
-      title: 'Seafood',
-      link: 'https://www.silocreativo.com/en/showcase/'
-    }
   ];
-  
 }
-  // productForm: FormGroup;
-
-  // constructor(private formBuilder: FormBuilder) {
-  //   this.productForm = this.formBuilder.group({
-  //     item: ['', Validators.required],
-  //     brand: ['', Validators.required],
-  //     quantity: [null, Validators.min(0)],
-  //     packNo: [''],
-  //     price: [null, Validators.min(0)],
-  //     rating: [null, Validators.min(0)]
-  //   });
-  // }
-
-
-  // onSubmit(): void {
-  //   if (this.productForm.valid) {
-  //     // Perform form submission or further processing
-  //     console.log('Product form submitted:', this.productForm.value);
-
-  //     // Reset the form after submission
-  //     this.productForm.reset();
-  //   } else {
-  //     // Mark form controls as touched to display validation errors
-  //     this.markFormControlsAsTouched(this.productForm);
-  //   }
-  // }
-
-  // markFormControlsAsTouched(formGroup: FormGroup): void {
-  //   Object.values(formGroup.controls).forEach(control => {
-  //     if (control instanceof FormGroup) {
-  //       this.markFormControlsAsTouched(control);
-  //     } else {
-  //       control.markAsTouched();
-  //     }
-  //   });
-  // }

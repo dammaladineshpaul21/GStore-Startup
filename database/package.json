@@ -4,9 +4,10 @@
   "description": "",
   "main": "db-connection/index.js",
   "scripts": {
-    "start": "npm-run-all --parallel  start-index start-dashboard",
+    "start": "npm-run-all --parallel  start-index start-dashboard start-dairybreakfast",
     "start-index": "nodemon db-connection/index.js",
-    "start-dashboard": "nodemon db-connection/dashbord.js"
+    "start-dashboard": "nodemon db-connection/dashbord.js",
+    "start-dairybreakfast":"nodemon db-connection/categoryapi/dairybreakfast.js"
   },
   "author": "dammala_dinesh",
   "license": "ISC",
