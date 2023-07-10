@@ -5,7 +5,7 @@ import { LoginFormComponent } from './login-form/login-form.component';
 import { GroceryDashbordComponent } from './grocery-dashbord/grocery-dashbord.component';
 import { DashBordDataComponent } from './dash-bord-data/dash-bord-data.component';
 import { CategoryDataComponent } from './category-data/category-data.component';
-// import { DairyBreakfastComponent } from './category-data/allcategorylist/dairy-breakfast/dairy-breakfast.component';
+import { DairyBreakfastComponent } from './category-data/allcategorylist/dairy-breakfast/dairy-breakfast.component';
 
 
 const routes: Routes = [
@@ -14,7 +14,7 @@ const routes: Routes = [
     { path: 'grocery-dashbord', component: GroceryDashbordComponent},
     { path: 'dash-bord-data', component: DashBordDataComponent},
     { path: 'category-data', component: CategoryDataComponent},
-    // { path: 'dairy-breakfast', component: DairyBreakfastComponent},
+    { path: 'dairy-breakfast', component: DairyBreakfastComponent},
 ];
 
 @NgModule({

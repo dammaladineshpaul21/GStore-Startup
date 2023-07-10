@@ -1,0 +1,13 @@
+.single-line-form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  
+.form-group {
+    flex: 1 1 200px;
+}
+
+button {
+    flex: 1 1 100%;
+}

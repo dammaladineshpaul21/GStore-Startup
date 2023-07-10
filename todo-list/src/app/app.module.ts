@@ -22,6 +22,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDatepickerModule} from '@angular/material/datepicker';
 import { MatIconModule } from '@angular/material/icon';
 import { IonicModule } from '@ionic/angular';
+import { DairyBreakfastComponent } from './category-data/allcategorylist/dairy-breakfast/dairy-breakfast.component';
+import { MatDialogModule } from '@angular/material/dialog';
 // import { DairyBreakfastComponent } from './category-data/allcategorylist/dairy-breakfast/dairy-breakfast.component';
 
 
@@ -33,9 +35,11 @@ import { IonicModule } from '@ionic/angular';
     GroceryDashbordComponent,
     DashBordDataComponent,
     CategoryDataComponent,
-    // DairyBreakfastComponent,
+    DairyBreakfastComponent
+        // DairyBreakfastComponent,
   ],
   imports: [
+    MatDialogModule,
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
