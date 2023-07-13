@@ -8,6 +8,7 @@ import { CategoryDataComponent } from './category-data/category-data.component';
 import { DairyBreakfastComponent } from './category-data/allcategorylist/dairy-breakfast/dairy-breakfast.component';
 
 
+
 const routes: Routes = [
     { path: '', component: FormExampleComponent},
     { path: 'login-form', component: LoginFormComponent},

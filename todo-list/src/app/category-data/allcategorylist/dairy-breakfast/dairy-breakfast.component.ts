@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
+import { MatDialog } from '@angular/material/dialog';
+import { UpdatePopupComponent } from '../update-popup/update-popup.component';
+
 
 
 
@@ -23,7 +26,8 @@ export class DairyBreakfastComponent implements OnInit {
   dataForm: FormGroup;
   tableData: DairyBreakfastItem[] = [];
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient,
+    private _dialog: MatDialog) {
     this.dataForm = new FormGroup({
       itemname: new FormControl('', Validators.required),
       quality: new FormControl('', Validators.required),
@@ -76,5 +80,9 @@ export class DairyBreakfastComponent implements OnInit {
         console.error('Error retrieving table data:', error);
       }
     );
+  }
+
+  openDilogBox(){
+    this._dialog.open(UpdatePopupComponent)
   }
 }

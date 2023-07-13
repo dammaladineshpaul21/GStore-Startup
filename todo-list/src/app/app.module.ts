@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
 import { FormExampleComponent } from './form-example/form-example.component';
@@ -13,10 +12,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { GroceryDashbordComponent } from './grocery-dashbord/grocery-dashbord.component';
 import { DashBordDataComponent } from './dash-bord-data/dash-bord-data.component';
 import { CategoryDataComponent } from './category-data/category-data.component'; // CLI imports AppRoutingModule
-import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
-import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDatepickerModule} from '@angular/material/datepicker';
@@ -24,7 +21,13 @@ import { MatIconModule } from '@angular/material/icon';
 import { IonicModule } from '@ionic/angular';
 import { DairyBreakfastComponent } from './category-data/allcategorylist/dairy-breakfast/dairy-breakfast.component';
 import { MatDialogModule } from '@angular/material/dialog';
-// import { DairyBreakfastComponent } from './category-data/allcategorylist/dairy-breakfast/dairy-breakfast.component';
+import { UpdatePopupComponent } from './category-data/allcategorylist/update-popup/update-popup.component';
+import { MatTableModule } from '@angular/material/table';
+import { MatNativeDateModule } from '@angular/material/core';
+
+
+
+
 
 
 @NgModule({
@@ -35,8 +38,8 @@ import { MatDialogModule } from '@angular/material/dialog';
     GroceryDashbordComponent,
     DashBordDataComponent,
     CategoryDataComponent,
-    DairyBreakfastComponent
-        // DairyBreakfastComponent,
+    DairyBreakfastComponent,
+    UpdatePopupComponent
   ],
   imports: [
     MatDialogModule,
@@ -50,11 +53,12 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatFormFieldModule,
     MatPaginatorModule,
     MatSortModule,
-    MatInputModule,
+    MatTableModule,
     BrowserAnimationsModule,
     MatDatepickerModule,
     MatIconModule,
-    IonicModule.forRoot()
+    MatNativeDateModule,
+    IonicModule.forRoot(),
   ],
   providers: [DataService],
   bootstrap: [AppComponent]

@@ -1,53 +1,35 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, AfterViewInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { MatIconModule } from '@angular/material/icon';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
-import {MatCalendarCellClassFunction, MatDatepickerModule} from '@angular/material/datepicker';
-import {MatInputModule} from '@angular/material/input';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatNativeDateModule} from '@angular/material/core';
+import { interval } from 'rxjs';
+import { startWith, switchMap } from 'rxjs/operators';
+import jsPDF from 'jspdf';
+import html2canvas from 'html2canvas';
 
 
 
 @Component({
   selector: 'app-dash-bord-data',
   templateUrl: './dash-bord-data.component.html',
-  styleUrls: ['./dash-bord-data.component.scss'],
-  // encapsulation: ViewEncapsulation.None,
-  // standalone: true,
+  styleUrls: ['./dash-bord-data.component.css']
 })
 export class DashBordDataComponent {
+  @ViewChild('table') table: any; // ViewChild decorator to access the table element
+
   displayedColumns: string[] = ['orderId', 'customerId', 'storeId', 'orderDate', 'totalAmount'];
   dataSource!: MatTableDataSource<any>;
-
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
-  @ViewChild(MatSort) sort!: MatSort;
+  filterValue: string = '';
 
   orderForm: FormGroup;
   filteredOrders: any[] = [];
   orders: any[] = [];
   value = 'Clear me';
 
-  // dateClass: MatCalendarCellClassFunction<Date> = (cellDate, view) => {
-  //   // Only highligh dates inside the month view.
-  //   if (view === 'month') {
-  //     const date = cellDate.getDate();
-
-  //     // Highlight the 1st and 20th day of each month.
-  //     return date === 1 || date === 20 ? 'example-custom-date-class' : '';
-  //   }
-  //   return '';
-  // };
-
-
   constructor(
     private formBuilder: FormBuilder,
     private http: HttpClient,
-    
   ) {
     this.orderForm = this.formBuilder.group({
       orderId: ['', Validators.required],
@@ -56,15 +38,28 @@ export class DashBordDataComponent {
       orderDate: ['', Validators.required],
       totalAmount: ['', Validators.required]
     });
-
     this.dataSource = new MatTableDataSource<any>();
-    this.getDataFromApi();
+
+    // Update data every 5 seconds
+    interval(5000)
+      .pipe(
+        startWith(0),
+        switchMap(() => this.http.get<any[]>('http://localhost:4000/api/ordersdata'))
+      )
+      .subscribe(
+        (response) => {
+          this.dataSource.data = response;
+          this.filteredOrders = response;
+        },
+        (error) => {
+          console.log('Error fetching data from API:', error);
+        }
+      );
   }
 
   onDateChange(event: MatDatepickerInputEvent<Date>) {
     const selectedDate = event.value;
   }
-
 
   submitOrder() {
     if (this.orderForm.invalid) {
@@ -90,29 +85,46 @@ export class DashBordDataComponent {
       );
   }
 
-  // Fetch data from the API
-  getDataFromApi() {
-    const apiUrl = 'http://localhost:4000/api/ordersdata';
+  applyFilter(event: any) {
+    const filterValue = event.target.value.trim().toLowerCase();
+    this.filterValue = filterValue;
+  }
+  
+  getFilteredOrders() {
+    if (!this.filterValue) {
+      return this.filteredOrders;
+    }
 
-    this.http.get<any[]>(apiUrl)
-      .subscribe(
-        (response) => {
-          this.dataSource.data = response; // Set the data to the dataSource
-          this.dataSource.sort = this.sort;
-          this.dataSource.paginator = this.paginator;
-        },
-        (error) => {
-          console.log('Error fetching data from API:', error);
-        }
+    return this.filteredOrders.filter((item) => {
+      // Perform your custom filtering logic here
+      return (
+        item.orderId.toLowerCase().includes(this.filterValue) ||
+        item.customerId.toLowerCase().includes(this.filterValue) ||
+        item.storeId.toLowerCase().includes(this.filterValue) ||
+        item.orderDate.toLowerCase().includes(this.filterValue) ||
+        item.totalAmount.toLowerCase().includes(this.filterValue)
       );
+    });
   }
 
-  applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
-
-    if (this.dataSource.paginator) {
-      this.dataSource.paginator.firstPage();
-    }
+  downloadAsPDF() {
+    const doc = new jsPDF();
+  
+    // Get the HTML table element
+    const table = this.table.nativeElement;
+  
+    html2canvas(table).then((canvas) => {
+      const imgData = canvas.toDataURL('image/png');
+      const imgWidth = 210; // A4 page width in mm
+      const pageHeight = (imgWidth / canvas.width) * canvas.height;
+      const imgHeight = pageHeight;
+      let position = 0;
+  
+      doc.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+      position -= 1;
+  
+      // Save the PDF file
+      doc.save('table_data.pdf');
+    });
   }
 }
